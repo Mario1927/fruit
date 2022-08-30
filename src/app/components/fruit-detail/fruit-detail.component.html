@@ -1,1 +1,31 @@
-<p>fruit-detail works!</p>
+<div class="flex justify-center mt-4">
+  <table *ngIf="fruit else elseBlock" class="table-auto w-[1000px]">
+    <thead>
+      <tr class="bg-slate-100">
+        <th class="border border-slate-300 rounded">Name</th>
+        <th class="border border-slate-300">Family</th>
+        <th class="border border-slate-300">Genus</th>
+        <th class="border border-slate-300">Order</th>
+        <th class="border border-slate-300 rounded">Nutritions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-xs text-center">
+        <td class="mx-8 px-8 py-4 border border-slate-300">{{fruit.name}}</td>
+        <td class="mx-8 px-8 py-4 border border-slate-300">{{fruit.family}}</td>
+        <td class="mx-8 px-8 py-4 border border-slate-300">{{fruit.genus}}</td>
+        <td class="mx-8 px-8 py-4 border border-slate-300">{{fruit.order}}</td>
+        <td class="mx-8 px-8 py-4 border border-slate-300">
+          <pre>
+Carbohydrates: {{fruit.nutritions.carbohydrates}}
+Protein: {{fruit.nutritions.protein}}
+Fat: {{fruit.nutritions.fat}}
+Calories: {{fruit.nutritions.calories}}
+Sugar: {{fruit.nutritions.sugar}}
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #elseBlock>Invalid Search</ng-template>
+</div>

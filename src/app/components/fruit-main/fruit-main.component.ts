@@ -20,7 +20,7 @@ export class FruitMainComponent implements OnInit {
 
   ngOnInit(): void {
     this.fruitService.getFruits().subscribe({
-      next: (response: IFruit[]) => this.fruits = response,
+      next: (response: IFruit[]) => {this.fruits = response },
       error: (e: HttpErrorResponse) => console.log(e.message)
     })
   }

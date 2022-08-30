@@ -6,21 +6,21 @@ import { IFruit } from 'src/app/interface/Fruit';
 import { FruitService } from 'src/app/services/fruit.service';
 
 @Component({
-  selector: 'app-fruit-detail',
-  templateUrl: './fruit-detail.component.html',
-  styleUrls: ['./fruit-detail.component.css']
+  selector: 'app-fruit-genus',
+  templateUrl: './fruit-genus.component.html',
+  styleUrls: ['./fruit-genus.component.css']
 })
-export class FruitDetailComponent implements OnInit {
+export class FruitGenusComponent implements OnInit {
 
   faEye = faEye;
 
-  public fruit: IFruit;
+  public fruits: IFruit[] = [];
 
   constructor(private fruitService: FruitService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.fruitService.getFruitsByName(this.route.snapshot.params['name']).subscribe({
-      next: (response: IFruit) => this.fruit = response,
+    this.fruitService.getFruitsByGenus(this.route.snapshot.params['genus']).subscribe({
+      next: (response: IFruit[]) => this.fruits = response,
       error: (e: HttpErrorResponse) => console.log(e.message)
     })
   }

@@ -8,17 +8,27 @@ import { IFruit } from '../interface/Fruit';
 })
 export class FruitService {
 
-  private url = 'https://fruityvice.com/api/fruit/all';
-
-  public headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-  public requestOptions: Object = {
-    headers: this.headers,
-    resposeType: 'text'
-  }
+  private url = 'https://cors-anywhere.herokuapp.com/fruityvice.com/api/fruit/';
 
   constructor(private http: HttpClient) { }
 
   public getFruits(): Observable<IFruit[]> {
-    return this.http.get<IFruit[]>(this.url, this.requestOptions);
+    return this.http.get<IFruit[]>(`${this.url}/all`);
+  }
+
+  public getFruitsByName(name: string): Observable<IFruit> {
+    return this.http.get<IFruit>(`${this.url}/${name}`);
+  }
+
+  public getFruitsByFamily(family: string): Observable<IFruit[]> {
+    return this.http.get<IFruit[]>(`${this.url}/family/${family}`)
+  }
+
+  public getFruitsByGenus(genus: string): Observable<IFruit[]> {
+    return this.http.get<IFruit[]>(`${this.url}/genus/${genus}`)
+  }
+
+  public getFruitsByOrder(order: string): Observable<IFruit[]> {
+    return this.http.get<IFruit[]>(`${this.url}/order/${order}`)
   }
 }
